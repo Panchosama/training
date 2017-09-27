@@ -1,6 +1,23 @@
-<h1>Listado de cursos</h1>
-<ul>
-{% for c in cursos %}
-	<li>{{ c }}</li>
-{% endfor %}
-</ul>
+{% extends 'training/base.html' %}
+
+{% block content %}
+	<table class="table table-striped table-bordered">
+		<legend>Listado de cursos</legend>
+		<thead class="thead-default">
+			<tr>
+				<th>Nombre</th>
+				<th>Duración <small>en meses</small></th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for c in cursos %}
+			<tr>
+				<td>{{ c.nombre }}</td>
+				<td>{{ c.vigencia }}</td>
+				<td><a href="#">deshabilitar</a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

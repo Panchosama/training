@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
+from dateutil.relativedelta import relativedelta
 
 # Create your models here.
 @python_2_unicode_compatible
@@ -37,21 +38,37 @@ class Entrenamiento(models.Model):
 	curso=models.ForeignKey(Curso)
 	fecha=models.DateField()
 
-#	def vigencia(Curso, self):
-		# # Calculo el largo de la vigencia del curso, en días
-		# year = timezone.timedelta(days=365)
-		# vig = Curso.objects.filter(pk=self.curso).values('vigencia').get()
-		
-		# # Calculo fecha de vencimiento del curso
-		# venc = self.fecha + timezone.timedelta(months=vig['vigencia'])
-		# hoy = timezone.now().date()
+	def vencimiento(self):
+		vig = self.curso.vigencia
+		venc= self.fecha + relativedelta(months=vig)
+		return venc
 
-		# if (hoy-venc) <= timezone.timedelta(days=30):
-		# 	return "Por vencer"
-		# elif (hoy-venc) < timezone.timedelta(0):
-		# 	return "Vencido por "+ str((hoy-venc)*-1) + u" días"
-		# else:
-		# 	return u"Al día"
+	def alerta(self):
+		hoy=timezone.now().date()
+		ven=self.vencimiento()
+
+		if (ven-hoy) < timezone.timedelta(days=31):
+			return "warn"
+		elif (ven-hoy) < timezone.timedelta(0):
+			return "dang"
+		else:
+			return "succ"
+
+	# def vigencia(self):
+	# 	# Calculo el largo de la vigencia del curso, en días
+	# 	year = timezone.timedelta(days=365)
+	# 	vig = Curso.objects.filter(pk=self.curso).values('vigencia').get()
+		
+	# 	# Calculo fecha de vencimiento del curso
+	# 	venc = self.fecha + relativedelta(months=vig['vigencia'])
+	# 	hoy = timezone.now().date()
+
+	# 	if (hoy-venc) <= timezone.timedelta(days=30):
+	# 		return "Por vencer"
+	# 	elif (hoy-venc) < timezone.timedelta(0):
+	# 		return "Vencido por "+ str((hoy-venc)*-1) + u" días"
+	# 	else:
+	# 		return u"Al día"
 
 
 

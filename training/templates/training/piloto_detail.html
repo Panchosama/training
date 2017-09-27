@@ -1,0 +1,38 @@
+{% extends 'training/base.html' %}
+
+{% block content %}
+	<h2>{{piloto.nombre}}</h2>
+	<ul>
+		<li>N&uacute;mero de licencia: {{piloto.licencia}}</li>
+	</ul>
+	<h3>Cursos realizados</h3>
+	{% if not cursos %}
+		<span>No tiene cursos registrados</span>
+	{% else %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Curso</th>
+					<th>Fecha</th>
+					<th>Vencimiento</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in cursos %}
+					{% if c.alerta == "warn" %}
+				<tr class="table-warning">
+					{% elif c.alerta == "dang" %}
+				<tr class="table-danger">
+					{% else %}
+				<tr class="table-success">
+					{% endif %}
+					<td>{{ c.curso }}</td>
+					<td>{{ c.fecha }}</td>
+					<td>{{ c.vencimiento }}</td>
+				</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+{% endblock %}
