@@ -21,7 +21,7 @@ class Piloto(models.Model):
 	 	self.save()
 
 	def __str__(self):
-		return self.nombre + " - " + self.licencia
+		return self.nombre
 
 @python_2_unicode_compatible
 class Curso(models.Model):
