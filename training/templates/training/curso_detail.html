@@ -1,0 +1,38 @@
+{% extends 'training/base.html' %}
+
+{% block content %}
+	<h2>{{curso.nombre}}</h2>
+	<ul>
+		<li>Duración: {{curso.vigencia}} meses</li>
+	</ul>
+	<h3>Pilotos</h3>
+	{% if not pilotos %}
+		<span>No se han entrenado</span>
+	{% else %}
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Piloto</th>
+					<th>Fecha</th>
+					<th>Vencimiento</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for p in pilotos %}
+					{% if p.alerta == "warn" %}
+				<tr class="warning">
+					{% elif p.alerta == "dang" %}
+				<tr class="danger">
+					{% else %}
+				<tr class="success">
+					{% endif %}
+					<td>{{ p.piloto }}</td>
+					<td>{{ p.fecha }}</td>
+					<td>{{ p.vencimiento }}</td>
+				</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+{% endblock %}

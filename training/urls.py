@@ -9,4 +9,7 @@ urlpatterns =[
 	url(r'^entrenamiento/new/$', views.entrenamiento_new, name='entrenamiento_new'),
 	url(r'^piloto/new/$', views.piloto_new, name='piloto_new'),
 	url(r'^curso/new/$', views.curso_new, name='curso_new'),
+	url(r'^curso/(?P<pk>[0-9]+)/$', views.curso_detail, name='curso_detail'),
+	url(r'^piloto/(?P<pk>[0-9]+)/edit/$', views.piloto_edit, name='piloto_edit'),
+	url(r'^entrenamiento/(?P<pk>[0-9]+)/edit/$', views.entrenamiento_edit, name='entrenamiento_edit'),
 ]

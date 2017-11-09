@@ -1,7 +1,7 @@
 {% extends 'training/base.html' %}
 
 {% block content %}
-	<a href="/pilotos">Ver pilotos</a> | <a href="/cursos">Ver cursos</a>
+	
 	<br >
 <!--	<table class="table table-striped table-bordered">
 		<td>
@@ -29,7 +29,9 @@
 			{% else %}
 		<span class="label label-success"><span class="fa fa-check"></span> </span>
 			{% endif %}
-		<br />
+		
+		<a class="btn btn-default" href="{% url 'entrenamiento_edit' pk=e.pk %}"><span class="fa fa-edit"></span></a>
+			<br />
 	{% endif %}
 	
 {% endfor %}

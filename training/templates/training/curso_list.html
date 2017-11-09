@@ -13,7 +13,7 @@
 		<tbody>
 		{% for c in cursos %}
 			<tr>
-				<td>{{ c.nombre }}</td>
+				<td><a href="{% url 'curso_detail' pk=c.pk %}">{{ c.nombre }}</a></td>
 				<td>{{ c.vigencia }}</td>
 				<td><a href="#">deshabilitar</a></td>
 			</tr>
