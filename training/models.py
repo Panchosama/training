@@ -44,15 +44,22 @@ class Entrenamiento(models.Model):
 		return venc
 
 	def alerta(self):
+		dif=self.dif()
+		if dif > timezone.timedelta(days=31):
+			return "succ"
+		elif dif <= timezone.timedelta(days=30):
+			if dif > timezone.timedelta(days=1):
+				return "warn"
+			else:
+				return "dang"
+
+	def dif(self):
 		hoy=timezone.now().date()
 		ven=self.vencimiento()
+		return (ven-hoy)
 
-		if (ven-hoy) < timezone.timedelta(days=31):
-			return "warn"
-		elif (ven-hoy) < timezone.timedelta(0):
-			return "dang"
-		else:
-			return "succ"
+	# def ultimo(self):
+
 
 	# def vigencia(self):
 	# 	# Calculo el largo de la vigencia del curso, en días

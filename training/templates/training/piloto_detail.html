@@ -9,7 +9,7 @@
 	{% if not cursos %}
 		<span>No tiene cursos registrados</span>
 	{% else %}
-		<table class="table">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Curso</th>
@@ -20,11 +20,11 @@
 			<tbody>
 				{% for c in cursos %}
 					{% if c.alerta == "warn" %}
-				<tr class="table-warning">
+				<tr class="warning">
 					{% elif c.alerta == "dang" %}
-				<tr class="table-danger">
+				<tr class="danger">
 					{% else %}
-				<tr class="table-success">
+				<tr class="success">
 					{% endif %}
 					<td>{{ c.curso }}</td>
 					<td>{{ c.fecha }}</td>

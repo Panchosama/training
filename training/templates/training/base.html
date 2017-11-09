@@ -2,14 +2,19 @@
 <html>
 	<head>
 		<title>Sistema de control de formación</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+	    <link rel="stylesheet" href="//fontawesome.io/assets/font-awesome/css/font-awesome.css">
 	    <link rel="stylesheet" href="{% static 'css/training.css' %}">
 	</head>
 	<body>
 
 		<div class="page-header">
-			<h1><a href="/">Control de entrenamientos</a></h1>
+			<h1><a href="/">Control de entrenamientos - Discovery Air Chile</a></h1>
+
+			<a href="{% url 'piloto_new' %}"><span class="fa fa-user" aria-hidden="true"></span> Agregar piloto</a>  |  
+			<a href="{% url 'curso_new' %}"><span class="fa fa-bank" aria-hidden="true"></span> Agregar curso</a>  |  
+			<a href="{% url 'entrenamiento_new' %}"><span class="fa fa-plus" aria-hidden="true"></span> Agregar entrenamiento</a>
 		</div>
 
 		<div class="content container">
