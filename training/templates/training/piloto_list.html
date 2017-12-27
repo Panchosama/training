@@ -1,6 +1,7 @@
 {% extends 'training/base.html' %}
 
 {% block content %}
+	{% if pilotos %}
 	<table class="table table-striped table-bordered">
 		<legend>Listado de pilotos</legend>
 		<thead class="thead-default">
@@ -13,11 +14,14 @@
 		<tbody>
 		{% for p in pilotos %}
 			<tr>
-				<td><a href="{% url 'piloto_detail' pk=p.pk %}">{{ p.nombre }}</td>
+				<td><a href="{% url 'piloto_detail' pk=p.pk %}">{{ p.nombre }}</a></td>
 				<td>{{ p.licencia }}</td>
 				<td><a href="#">deshabilitar</a></td>
 			</tr>
 		{% endfor %}
+		{% else %}
+			<h4>No hay pilotos ingresados aún.</h4>
+		{% endif %}
 		</tbody>
 	</table>
 {% endblock %}

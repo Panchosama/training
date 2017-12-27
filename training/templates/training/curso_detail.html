@@ -4,6 +4,7 @@
 	<h2>{{curso.nombre}}</h2>
 	<ul>
 		<li>Duración: {{curso.vigencia}} meses</li>
+		<a class="btn btn-default" href="{% url 'curso_edit' pk=curso.pk %}"><span class="fa fa-edit"></span> Editar</a>
 	</ul>
 	<h3>Pilotos</h3>
 	{% if not pilotos %}
@@ -30,7 +31,6 @@
 					<td>{{ p.fecha }}</td>
 					<td>{{ p.vencimiento }}</td>
 				</tr>
-
 				{% endfor %}
 			</tbody>
 		</table>

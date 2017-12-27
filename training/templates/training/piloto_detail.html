@@ -3,9 +3,9 @@
 {% block content %}
 	<h2>{{piloto.nombre}}</h2>
 	<ul>
-		<li>N&uacute;mero de licencia: {{piloto.licencia}}</li>
+		<li>N&uacute;mero de licencia: {{ piloto.licencia }}</li>
 	</ul>
-	 <a class="btn btn-default" href="{% url 'piloto_edit' pk=piloto.pk %}"><span class="fa fa-edit"></span></a>
+	 <a class="btn btn-default" href="{% url 'piloto_edit' pk=piloto.pk %}"><span class="fa fa-edit"></span> Editar</a>
 	<h3>Cursos realizados</h3>
 	{% if not cursos %}
 		<span>No tiene cursos registrados</span>

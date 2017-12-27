@@ -10,7 +10,7 @@
 	<body>
 
 		<div class="page-header">
-			<h1><a href="/">Control de entrenamientos - Discovery Air Chile</a></h1>
+			{% block title %}<h1><a href="/">Control de entrenamientos - Discovery Air Chile</a></h1>{% endblock %}
 
 			<a href="{% url 'piloto_new' %}"><span class="fa fa-user" aria-hidden="true"></span> Agregar piloto</a>  |  
 			<a href="{% url 'curso_new' %}"><span class="fa fa-bank" aria-hidden="true"></span> Agregar curso</a>  |  
@@ -22,7 +22,7 @@
 			<div class="row">
 				<div class="col-md-8">
 
-					{% block content%}
+					{% block content %}
 					{% endblock %}
 
 				</div>
