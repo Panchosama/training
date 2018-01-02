@@ -7,13 +7,11 @@ from .forms import EntrenamientoForm, PilotoForm, CursoForm
 
 # Create your views here
 def index(request):
-#	cursos = Curso.objects.all()
+	cursos = Curso.objects.all()
 	pilotos = Piloto.objects.all()
-	entrenamientos = Entrenamiento.objects.all( )
+	entrenamientos = Entrenamiento.objects.all().order_by('-fecha').distinct()
 	pil=Entrenamiento.objects.values_list('piloto_id', flat=True).distinct()
-	
-#	e = entrenamientos.piloto.filter(curso__id=**kwargs)
-	return render(request, 'training/index.html',{'entrenamientos':entrenamientos, 'pilotos':pilotos, 'pil':pil})
+	return render(request, 'training/index.html',{'entrenamientos':entrenamientos, 'pilotos':pilotos, 'pil':pil, 'cursos':cursos})
 
 # Listas
 def piloto_list(request):

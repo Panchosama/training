@@ -37,6 +37,7 @@ class Entrenamiento(models.Model):
 	piloto=models.ForeignKey(Piloto)
 	curso=models.ForeignKey(Curso)
 	fecha=models.DateField(help_text="Formato mm/dd/yyyy")
+	
 
 	def vencimiento(self):
 		vig = self.curso.vigencia

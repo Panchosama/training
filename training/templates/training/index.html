@@ -3,62 +3,54 @@
 {% block content %}
 
 {% for p in pilotos %}
-	
-
 <table class="table table-striped table-bordered">
-		
-<!-- Fila 1 -->
+<!-- Identifico al piloto de la tabla -->
 	<tr>
-		<th>Piloto: <a href="{% url 'piloto_detail' pk=p.pk %}">
-    				{{ p.nombre }}
-    			</a>
+		<th colspan=2>
+			Piloto: <a href="{% url 'piloto_detail' pk=p.pk %}">{{ p.nombre }}</a>
     	</th>
-	
 	</tr>
+	
+<!-- Filas 2+ -->
 
-<!-- Fila 2+ -->
-	<!-- Obtengo piloto -->
-	{% if p.id in pil %}	
+<!-- Veo si el piloto está en el listado de pilotos entrenados -->
+	{% if p.id in pil %}
+	<!-- si está, busco sus entrenamientos -->	
 		{% for e in entrenamientos %}
 			{% if e.piloto.id == p.id %}
-		<tr>
-    		<td>
-    			<a href="{% url 'curso_detail' pk=e.curso.pk %}">
-    				{{ e.curso.nombre }}
-    			</a>
-    		</td>
-	
-    <!-- Obtengo curso y entrenamiento -->
-			
-		
-																
-													{% if e.alerta == "warn" %}
-											<td class="warning">
-														{% elif e.alerta == "dang" %}
-											<td class="danger">
-														{% else %}
-											<td class="success">
-													{% endif %}
-									    		{{ e.vencimiento }}
-					</td>
-
-		   		
-		</tr>
+			<!-- PENDIENTE: VERIFICAR SI CURSO YA ESTÁ REPETIDO -->
+	<tr>
+		<td>
+			<a href="{% url 'curso_detail' pk=e.curso.pk %}">
+				{{ e.curso.nombre }}
+			</a>
+		</td>
+			{% if e.alerta == "warn" %}
+		<td class="warning">
+			{% elif e.alerta == "dang" %}
+		<td class="danger">
+			{% else %}
+		<td class="success">
+			{% endif %}
+    		{{ e.vencimiento }}
+		</td>
+	</tr>
 			{% endif %}
 		{% endfor %}
 	{% else %}
-<!-- Fin Filas 2+ -->
-	 <tr><td colspan=2>
-
-	 No hay registros asociados a este piloto
-	</td></tr>
+	<!-- si no está, muestro alternativa vacía -->
+	<tr>
+		<td colspan=2>
+	 	No hay registros asociados a este piloto
+		</td>
+	</tr>
 	{% endif %}
-
+<!-- Fin Filas 2+ -->
 	</table>
-<br/><br/>
 
-   	
 {% endfor %}
-
+<div class="footer">
+	&copy; 2017, Francisco Figueroa
+</div>
 {% endblock %}
 

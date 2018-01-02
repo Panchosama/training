@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<title>Sistema de control de formación</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
 	    <link rel="stylesheet" href="//fontawesome.io/assets/font-awesome/css/font-awesome.css">
 	    <link rel="stylesheet" href="{% static 'css/training.css' %}">
 	</head>
@@ -12,10 +12,29 @@
 		<div class="page-header">
 			{% block title %}<h1><a href="/">Control de entrenamientos - Discovery Air Chile</a></h1>{% endblock %}
 
-			<a href="{% url 'piloto_new' %}"><span class="fa fa-user" aria-hidden="true"></span> Agregar piloto</a>  |  
-			<a href="{% url 'curso_new' %}"><span class="fa fa-bank" aria-hidden="true"></span> Agregar curso</a>  |  
-			<a href="{% url 'entrenamiento_new' %}"><span class="fa fa-book" aria-hidden="true"></span> Agregar entrenamiento</a> | 
-			<a href="/pilotos">Ver pilotos</a> | <a href="/cursos">Ver cursos</a>
+<!-- Single button -->
+		<div class="btn-group">
+		  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Agregar <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="{% url 'piloto_new' %}">Piloto</a></li>
+		    <li><a href="{% url 'curso_new' %}">Curso</a></li>
+		    <li><a href="{% url 'entrenamiento_new' %}">Entrenamiento</a></li>
+		  </ul>
+		</div>
+
+		<div class="btn-group">
+		  <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Ver <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a href="/pilotos">Pilotos</a></li>
+		    <li><a href="/cursos">Cursos</a></li>
+		   
+		  </ul>
+		</div>
+			
 		</div>
 
 		<div class="content container">
@@ -28,5 +47,17 @@
 				</div>
 			</div>
 		</div>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		
+		<script>
+			$('.dropdown').click(function(){
+			$('.dropdown-menu').slideUp();
+			if ($(this).children('.dropdown-menu').visible()==false){
+				$(this).children('.dropdown-menu').slideToggle();
+			}
+		});
+		</script>
 	</body>
 </html>
