@@ -32,7 +32,7 @@ class Curso(models.Model):
 
 	def __str__(self):
 		return self.nombre
-
+@python_2_unicode_compatible
 class Entrenamiento(models.Model):
 	piloto=models.ForeignKey(Piloto)
 	curso=models.ForeignKey(Curso)
